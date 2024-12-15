@@ -1,7 +1,9 @@
 <?php
 
 $pdo = new PDO('mysql:mysql:host=localhost; dbname=bootstrap_projeto; port=3307', 'root', '');
-
+$sobre = $pdo -> prepare("SELECT * FROM `tb_sobre`");
+$sobre -> execute();
+$sobre = $sobre -> fetch()['sobre'];
 ?>
 
 <!DOCTYPE html>
@@ -126,15 +128,20 @@ $pdo = new PDO('mysql:mysql:host=localhost; dbname=bootstrap_projeto; port=3307'
 			<?php
 			if (isset($_POST['editar_sobre'])) {
 				$sobre = $_POST['sobre'];
-				$pdo-> exec("DELETE FROM `tb_sobre`");
-				$sql = $pdo-> prepare("INSERT INTO `tb_sobre`(`sobre`) VALUES (?)");
-				$sql->execute(array($sobre));
+				$pdo -> exec("DELETE FROM `tb_sobre`");
+				$sql = $pdo -> prepare("INSERT INTO `tb_sobre`(`sobre`) VALUES (?)");
+				$sql -> execute(array($sobre));
 
 				print('<div class="alert alert-success" role="alert">O código HTML da sessão sobre foi editada com sucesso!</div>');
 
-				$sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
-				$sobre->execute();
-				$sobre = $sobre->fetch()['sobre'];
+			}
+			else if (isset($_POST['cadastrar_equipe'])) {
+				$nomeMembro = $_POST['nomeMembro'];
+				$descricaoMembro = $_POST['descricaoMembro'];
+				$sql = $pdo -> prepare("INSERT INTO `tb_equipe`(`nome`, `descricao`) VALUES (?,?)");
+				$sql -> execute(array($nomeMembro, $descricaoMembro));
+
+				print('<div class="alert alert-success" role="alert">O membro da equipe foi cadastrado com sucesso!</div>');
 			}
 			?>
 
@@ -156,9 +163,14 @@ $pdo = new PDO('mysql:mysql:host=localhost; dbname=bootstrap_projeto; port=3307'
 					<h5 class="mb-0">Cadastrar Equipe</h5>
 				</div>
 				<div class="card-body">
-					<form>
+					<form method="POST">
 						<label class="form-label" for="nomeMembro">Nome do Membro:</label>
 						<input class="form-control" type="text" id="nomeMembro" name="nomeMembro" style="margin-bottom: 10px;">
+
+						<label class="form-label" for="descricaoMembro">Nome do Membro:</label>
+						<textarea style="resize: vertical;" class="form-control mb-5" name="descricaoMembro" id="descricaoMembro"></textarea>
+						<input type="hidden" name="cadastrar_equipe">
+
 						<input class="btn btn-primary" type="submit" value="Cadastrar">
 					</form>
 				</div>
@@ -178,17 +190,28 @@ $pdo = new PDO('mysql:mysql:host=localhost; dbname=bootstrap_projeto; port=3307'
 							</tr>
 							</thead>
 							<tbody>
+
+							<?php
+							$equipe = $pdo -> prepare("SELECT * FROM `tb_equipe`");
+							$equipe -> execute();
+							$membros = $equipe -> fetchAll();
+							foreach($membros as $key=>$value) {
+
+							?>
+
 							<tr>
-								<td style="text-align: center;">1</td>
-								<td style="text-align: center;">Eduardo</td>
+								<td style="text-align: center;"><?=$value['id']?></td>
+								<td style="text-align: center;"><?=$value['nome']?></td>
 								<td style="text-align: center;">
-									<button class="btn btn-danger" type="button">
+									<button class="btn btn-danger deletar-membro" id_membro="<?=$value['id']?>" type="button">
 										<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash-fill" style="width: 20px;height: 20px;">
 											<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"></path>
 										</svg>
 									</button>
 								</td>
 							</tr>
+
+							<?php } ?>
 							</tbody>
 						</table>
 					</div>

@@ -25,4 +25,14 @@ $(function(){
         }
     })
 
+    $('button.deletar-membro').click(function() {
+        var id_membro = $(this).attr('id_membro');
+        $.ajax({
+            method: 'POST',
+            data: {'id_membro': id_membro},
+            url: 'deletar.php'
+        })
+        $(this).parent().parent().remove();
+    });
+
 })
