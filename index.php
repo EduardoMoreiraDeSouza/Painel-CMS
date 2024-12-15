@@ -1,3 +1,9 @@
+<?php
+
+$pdo = new PDO('mysql:mysql:host=localhost; dbname=bootstrap_projeto; port=3307', 'root', '');
+
+?>
+
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="pt-br">
 
@@ -26,13 +32,13 @@
 			<div class="collapse navbar-collapse" id="navcol-5">
 				<ul class="navbar-nav d-flex m-auto" id="menu-principal">
 					<li class="nav-item">
-						<a class="nav-link" href="#">Cadastrar Equipe</a>
+						<a class="nav-link" href="#" ref_sys="sobre">Editar Sobre</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Editar Sobre</a>
+						<a class="nav-link" href="#" ref_sys="cadastrar_equipe">Cadastrar Equipe</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Gerenciar Equipe</a>
+						<a class="nav-link" href="#" ref_sys="lista_equipe">Lista Equipe</a>
 					</li>
 				</ul>
 				<a class="btn border rounded-circle ms-md-2 btn-danger d-flex justify-content-center align-items-center" role="button" href="#" style="height: 38px;width: 42px;">
@@ -84,17 +90,7 @@
 		<div class="col-md-3" style="padding: 12px;">
 			<ul class="list-group">
 				<li class="list-group-item" style="padding: 0;border-style: solid;">
-					<a class="list-group-item active" href="#" style="width: 100%;border-style: none;border-right-style: none;">
-						<span class="d-flex align-items-center" style="border-style: none;border-right-style: none;">
-							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-house-fill" style="width: 25px;">
-								<path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
-								<path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"></path>
-							</svg>&nbsp;Home
-						</span>
-					</a>
-				</li>
-				<li class="list-group-item" style="padding: 0;border-style: solid;">
-					<a class="list-group-item" href="#" style="width: 100%;border-style: none;border-right-style: none;">
+					<a class="list-group-item" href="#" style="width: 100%;border-style: none;border-right-style: none;" ref_sys="sobre">
 						<span class="d-flex align-items-center" style="border-style: none;border-right-style: none;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pen-fill" style="width: 25px;">
 								<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"></path>
@@ -103,33 +99,59 @@
 					</a>
 				</li>
 				<li class="list-group-item d-flex justify-content-center align-items-center" style="padding: 0;border-style: solid;">
-					<a class="list-group-item" href="#" style="width: 100%;margin-right: 5px;border-style: none;border-right-style: none;">
+					<a class="list-group-item" href="#" style="width: 100%;margin-right: 5px;border-style: none;border-right-style: none;" ref_sys="cadastrar_equipe">
 						<span class="d-flex align-items-center" style="border-style: none;border-right-style: none;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-pen-fill" style="width: 25px;">
 								<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001"></path>
-							</svg>&nbsp;Equipe
+							</svg>&nbsp;Cadastrar Equipe
 						</span>
 					</a>
 					<span class="badge border rounded-circle d-flex justify-content-center align-items-center ms-auto" style="background: #292626;width: 29px;height: 30px;">
 						2
 					</span>
 				</li>
+				<li class="list-group-item" style="padding: 0;border-style: solid;">
+					<a class="list-group-item" href="#" style="width: 100%;border-style: none;border-right-style: none;" ref_sys="lista_equipe">
+						<span class="d-flex align-items-center" style="border-style: none;border-right-style: none;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-list-columns-reverse" style="width: 25px;">
+								<path fill-rule="evenodd" d="M0 .5A.5.5 0 0 1 .5 0h2a.5.5 0 0 1 0 1h-2A.5.5 0 0 1 0 .5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10A.5.5 0 0 1 4 .5m-4 2A.5.5 0 0 1 .5 2h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 4h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 6h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2A.5.5 0 0 1 .5 8h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 0 1h-8a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1h-10a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m-4 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5m4 0a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5"></path>
+							</svg>&nbsp;Lista Equipe
+						</span>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div class="col-md-9" style="padding: 12px;">
-			<div class="card" style="margin-bottom: 15px;">
+
+			<?php
+			if (isset($_POST['editar_sobre'])) {
+				$sobre = $_POST['sobre'];
+				$pdo-> exec("DELETE FROM `tb_sobre`");
+				$sql = $pdo-> prepare("INSERT INTO `tb_sobre`(`sobre`) VALUES (?)");
+				$sql->execute(array($sobre));
+
+				print('<div class="alert alert-success" role="alert">O código HTML da sessão sobre foi editada com sucesso!</div>');
+
+				$sobre = $pdo->prepare("SELECT * FROM `tb_sobre`");
+				$sobre->execute();
+				$sobre = $sobre->fetch()['sobre'];
+			}
+			?>
+
+			<div class="card" id="sobre_section" style="margin-bottom: 15px;">
 				<div class="card-header">
 					<h5 class="mb-0">Sobre</h5>
 				</div>
 				<div class="card-body">
-					<form>
+					<form method="post">
 						<label class="form-label" for="textarea">Código HTML:</label>
-						<textarea class="form-control" id="textarea" style="margin-bottom: 10px;min-height: 125px; resize: vertical;" name="sobre"></textarea>
-						<input class="btn btn-primary" type="submit">
+						<textarea class="form-control" id="textarea" style="margin-bottom: 10px;min-height: 125px; resize: vertical;" name="sobre"><?= $sobre ?></textarea>
+						<input type="hidden" name="editar_sobre">
+						<input class="btn btn-primary" type="submit" name="acao" value="Atualizar">
 					</form>
 				</div>
 			</div>
-			<div class="card" style="margin-bottom: 15px;">
+			<div class="card" id="cadastrar_equipe_section" style="margin-bottom: 15px;">
 				<div class="card-header">
 					<h5 class="mb-0">Cadastrar Equipe</h5>
 				</div>
@@ -137,11 +159,11 @@
 					<form>
 						<label class="form-label" for="nomeMembro">Nome do Membro:</label>
 						<input class="form-control" type="text" id="nomeMembro" name="nomeMembro" style="margin-bottom: 10px;">
-						<input class="btn btn-primary" type="submit">
+						<input class="btn btn-primary" type="submit" value="Cadastrar">
 					</form>
 				</div>
 			</div>
-			<div class="card" style="margin-bottom: 15px;">
+			<div class="card" id="lista_equipe_section" style="margin-bottom: 15px;">
 				<div class="card-header">
 					<h5 class="mb-0">Equipe</h5>
 				</div>
